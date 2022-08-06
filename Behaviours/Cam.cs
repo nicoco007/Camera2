@@ -165,6 +165,7 @@ namespace Camera2.Behaviours {
 				MakeMiddleware<Smoothfollow>(),
 				MakeMiddleware<ModmapExtensions>(),
 				MakeMiddleware<Follow360>(),
+				MakeMiddleware<FollowHead>(),
 				MakeMiddleware<MovementScriptProcessor>(),
 				MakeMiddleware<VMCAvatar>()
 			};

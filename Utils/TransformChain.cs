@@ -9,6 +9,7 @@ namespace Camera2.Utils {
 		public static int SmoothFollow = -500;
 		public static int PositionOffset = -400;
 		public static int Follow360 = -300;
+		public static int FollowHead = -200;
 		public static int MovementScriptProcessor = 0;
 	}
 

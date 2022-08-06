@@ -82,6 +82,33 @@ namespace Camera2.Utils
 		}
 	}
 
+	class Vector2Converter : JsonConverter<Vector2> {
+		public override void WriteJson(JsonWriter writer, Vector2 vec, JsonSerializer serializer) {
+			writer.WriteStartObject();
+			writer.WritePropertyName("x");
+			writer.WriteValue(JsonHelpers.limitFloatResolution(vec.x));
+			writer.WritePropertyName("y");
+			writer.WriteValue(JsonHelpers.limitFloatResolution(vec.y));
+			writer.WriteEndObject();
+		}
+
+		public override Vector2 ReadJson(JsonReader reader, Type objectType, Vector2 existingValue, bool hasExistingValue, JsonSerializer serializer) {
+			Vector2 vec = new Vector2();
+			do {
+				reader.Read();
+				if(reader.TokenType == JsonToken.PropertyName) {
+					string property = reader.Value.ToString();
+					if(property == "x")
+						vec.x = (float)reader.ReadAsDecimal().GetValueOrDefault();
+					else if(property == "y")
+						vec.y = (float)reader.ReadAsDecimal().GetValueOrDefault();
+				}
+			}
+			while(reader.TokenType != JsonToken.EndObject);
+			return vec;
+		}
+	}
+
 	class Vector3Converter : JsonConverter<Vector3> {
 		public override void WriteJson(JsonWriter writer, Vector3 vec, JsonSerializer serializer) {
 			writer.WriteStartObject();
