@@ -1,9 +1,7 @@
-﻿using Camera2.HarmonyPatches;
+﻿using System;
+using Camera2.HarmonyPatches;
 using Camera2.Interfaces;
 using Camera2.Utils;
-using HarmonyLib;
-using System;
-using System.Reflection;
 using UnityEngine;
 
 namespace Camera2.Configuration {
@@ -17,8 +15,7 @@ namespace Camera2.Configuration {
 }
 
 namespace Camera2.Middlewares {
-	class ModmapExtensions : CamMiddleware, IMHandler {
-		//static Type Noodle_PlayerTrack;
+	class ModmapExtensions : CamMiddleware {
 		static Transform g_noodleOrigin = null;
 		Transform noodleOrigin = null;
 
@@ -27,7 +24,7 @@ namespace Camera2.Middlewares {
 		}
 
 		private Transformer mapMovementTransformer = null;
-		public new bool Pre() {
+		public override bool Pre() {
 			// We wanna parent FP cams as well so that the noodle translations are applied instantly and dont get smoothed out by SmoothFollow
 			if(
 				enabled &&

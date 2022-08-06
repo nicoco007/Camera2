@@ -15,7 +15,7 @@ namespace Camera2.Configuration {
 }
 
 namespace Camera2.Middlewares {
-	class MovementScriptProcessor : CamMiddleware, IMHandler {
+	class MovementScriptProcessor : CamMiddleware {
 		static System.Random randomSource = new System.Random();
 
 		Transformer scriptTransformer = null;
@@ -58,11 +58,11 @@ namespace Camera2.Middlewares {
 #endif
 		}
 
-		new public void CamConfigReloaded() => Reset();
+		public override void CamConfigReloaded() => Reset();
 
 		public void OnDisable() => Reset();
 
-		new public bool Pre() {
+		public override bool Pre() {
 			if(settings.MovementScript.scriptList.Length == 0 ||
 				(!SceneUtil.isInSong && !settings.MovementScript.enableInMenu) ||
 				cam.settings.type == Configuration.CameraType.FirstPerson

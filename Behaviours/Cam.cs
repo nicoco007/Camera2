@@ -29,7 +29,7 @@ namespace Camera2.Behaviours {
 		internal CameraDesktopView previewImage { get; private set; } = null;
 		internal PositionableCam worldCam { get; private set; } = null;
 
-		internal IMHandler[] middlewares { get; private set; }
+		internal CamMiddleware[] middlewares { get; private set; }
 
 		internal Transformer transformer;
 		internal TransformChain transformchain;
@@ -172,7 +172,7 @@ namespace Camera2.Behaviours {
 			camClone.AddComponent<CamPostProcessor>().Init(this);
 		}
 
-		private IMHandler MakeMiddleware<T>() where T : CamMiddleware, IMHandler {
+		private CamMiddleware MakeMiddleware<T>() where T : CamMiddleware {
 			return gameObject.AddComponent<T>().Init(this);
 		}
 

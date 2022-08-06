@@ -10,7 +10,7 @@ namespace Camera2.Configuration {
 }
 
 namespace Camera2.Middlewares {
-	class Multiplayer : CamMiddleware, IMHandler {
+	class Multiplayer : CamMiddleware {
 		Transformer originLmao = null;
 
 		new public bool Pre() {

@@ -12,7 +12,7 @@ namespace Camera2.Configuration {
 }
 
 namespace Camera2.Middlewares {
-	class Follow360 : CamMiddleware, IMHandler {
+	class Follow360 : CamMiddleware {
 		public void OnDisable() => Reset();
 
 		Transformer rotationApplier = null;
@@ -26,7 +26,7 @@ namespace Camera2.Middlewares {
 			}
 		}
 
-		new public bool Pre() {
+		public override bool Pre() {
 			if(
 				!enabled ||
 				!settings.Follow360.enabled ||

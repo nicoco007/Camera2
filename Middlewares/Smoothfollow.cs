@@ -47,7 +47,7 @@ namespace Camera2.Configuration {
 }
 
 namespace Camera2.Middlewares {
-	class Smoothfollow : CamMiddleware, IMHandler {
+	class Smoothfollow : CamMiddleware {
 		Scene lastScene;
 
 		Transform parent { get { return settings.Smoothfollow.parent; } set { settings.Smoothfollow.parent = value; } }
@@ -73,7 +73,7 @@ namespace Camera2.Middlewares {
 			return Math.Min(angle, to);
 		}
 
-		new public bool Pre() {
+		public override bool Pre() {
 			if(settings.type == Configuration.CameraType.Positionable) {
 				if(settings.Smoothfollow.transformer != null) {
 					settings.Smoothfollow.transformer.position = Vector3.zero;
