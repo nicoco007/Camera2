@@ -196,8 +196,8 @@ namespace Camera2.UI {
 			get => cam.settings.visibleObjects.EverythingElse; set { cam.settings.visibleObjects.EverythingElse = value; }
 		}
 
-		internal bool multiplayer_followSpectatorPlattform {
-			get => cam.settings.Multiplayer.followSpectatorPlattform; set { cam.settings.Multiplayer.followSpectatorPlattform = value; }
+		internal bool multiplayer_followSpectatorPlatform {
+			get => cam.settings.Multiplayer.followSpectatorPlatform; set { cam.settings.Multiplayer.followSpectatorPlatform = value; }
 		}
 
 		internal bool smoothFollow_forceUpright {

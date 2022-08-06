@@ -185,7 +185,7 @@ namespace Camera2.Configuration {
 				maskBuilder |= (type == CameraType.FirstPerson && visibleObjects.Avatar != AvatarVisibility.ForceVisibleInFP) ? VisibilityMasks.FirstPersonAvatar : VisibilityMasks.ThirdPersonAvatar;
 			}
 
-			if(visibleObjects.Floor) maskBuilder |= VisibilityMasks.Floor | VisibilityMasks.PlayerPlattform;
+			if(visibleObjects.Floor) maskBuilder |= VisibilityMasks.Floor | VisibilityMasks.PlayerPlatform;
 			if(visibleObjects.Debris) maskBuilder |= VisibilityMasks.Debris;
 			if(visibleObjects.CutParticles) maskBuilder |= VisibilityMasks.CutParticles;
 			if(visibleObjects.Sabers) maskBuilder |= VisibilityMasks.Sabers;

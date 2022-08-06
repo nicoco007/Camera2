@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Camera2.Configuration {
 	class Settings_Multiplayer : CameraSubSettings {
-		public bool followSpectatorPlattform = true;
+		public bool followSpectatorPlatform = true;
 	}
 }
 
@@ -21,7 +21,7 @@ namespace Camera2.Middlewares {
 			 */
 			var x = HookMultiplayerSpectatorController.instance;
 
-			if(!SceneUtil.isInMultiplayer || !SceneUtil.isInSong || x == null || !settings.Multiplayer.followSpectatorPlattform) {
+			if(!SceneUtil.isInMultiplayer || !SceneUtil.isInSong || x == null || !settings.Multiplayer.followSpectatorPlatform) {
 				if(originLmao != null) {
 					originLmao.position = Vector3.zero;
 					originLmao.rotation = Quaternion.identity;
