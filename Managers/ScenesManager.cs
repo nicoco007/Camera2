@@ -2,9 +2,9 @@
 using Camera2.HarmonyPatches;
 using Camera2.SDK;
 using Camera2.Utils;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Camera2.Managers {
@@ -39,12 +39,10 @@ namespace Camera2.Managers {
 			Plugin.Log.Info($"ActiveSceneChanged({sceneName}) - Current loadedScene: {loadedScene}");
 #endif
 
-			SharedCoroutineStarter.instance.StartCoroutine(LoadGameSceneNextFrame(sceneName));
-		}
-
-		static IEnumerator LoadGameSceneNextFrame(string sceneName = null) {
-			yield return null;
-			LoadGameScene(sceneName);
+			IPA.Utilities.Async.UnityMainThreadTaskScheduler.Factory.StartNew(async () => {
+				await Task.Yield();
+				LoadGameScene();
+			});
 		}
 
 		public static void LoadGameScene(string sceneName = null, bool forceReload = false) {
