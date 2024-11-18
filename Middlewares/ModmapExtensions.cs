@@ -47,7 +47,7 @@ namespace Camera2.Middlewares {
 					// If we are not yet attached, and we dont have a parent thats active yet, try to get one!
 					if(mapMovementTransformer == null) {
 #if DEBUG
-						Console.WriteLine("Enabling Modmap parenting for camera {0}", cam.name);
+						Plugin.Log.Info($"Enabling Modmap parenting for camera {cam.name}");
 #endif
 						mapMovementTransformer = cam.transformchain.AddOrGet("ModMapExt", TransformerOrders.ModmapParenting);
 					}

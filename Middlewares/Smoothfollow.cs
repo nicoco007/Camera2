@@ -122,7 +122,7 @@ namespace Camera2.Middlewares {
 					}
 				}
 
-				//System.Console.WriteLine("FP cam is attached to {0}", parentToUse);
+				// Plugin.Log.Debug($"FP cam is attached to {parentToUse}");
 
 				// If we dont have a parent we should not render.
 				if(parentToUse == null)

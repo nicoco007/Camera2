@@ -198,7 +198,7 @@ namespace Camera2.Behaviours {
 			PrepareMiddlewaredRender();
 #if FPSCOUNT
 			if(sw.ElapsedMilliseconds > 500) {
-				Console.WriteLine("Rendered FPS for {1}: {0}", renderedFrames * 2, name);
+				Plugin.Log.Debug($"Rendered FPS for {name}: {renderedFrames * 2}");
 				renderedFrames = 0;
 				sw.Restart();
 			}

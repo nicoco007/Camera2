@@ -29,7 +29,7 @@ namespace Camera2.HarmonyPatches {
 
 #if DEBUG
 			Plugin.Log.Warn("HookRoomAdjust.Postfix! " + __originalMethod.Name);
-			Console.WriteLine("pos {0}, rot {1}", position, rotation);
+			Plugin.Log.Debug($"pos {position}, rot {rotation}");
 #endif
 		}
 
@@ -40,7 +40,7 @@ namespace Camera2.HarmonyPatches {
 
 #if DEBUG
 			Plugin.Log.Warn("HookRoomAdjust.ApplyCustom!");
-			Console.WriteLine("pos {0}, rot {1}", position, rotation);
+			Plugin.Log.Debug($"pos {position}, rot {rotation}");
 #endif
 		}
 	}
