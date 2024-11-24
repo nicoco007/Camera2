@@ -34,7 +34,6 @@ namespace Camera2.Configuration {
 		bool forceUpright { get => false; set => limits.rot_z_min = limits.rot_z_min = 0; }
 		public bool ShouldSerializeforceUpright() => false;
 
-		[JsonIgnore] internal bool useLocalPosition = true;
 		[JsonIgnore] internal Transform parent;
 
 
@@ -99,7 +98,6 @@ namespace Camera2.Middlewares {
 			if(settings.type == Configuration.CameraType.FirstPerson && HookFPFCToggle.isInFPFC) {
 				parentToUse = HookFPFCToggle.fpfcTransform;
 				currentReplaySource = null;
-				settings.Smoothfollow.useLocalPosition = HookFPFCToggle.isSiraSettingLocalPostionYes;
 			}
 
 			Vector3 targetPosition = Vector3.zero;
@@ -115,10 +113,8 @@ namespace Camera2.Middlewares {
 
 						parent = parentToUse = a == null ? null : a.transform;
 						// Dont even try to understand why this is necessary
-						settings.Smoothfollow.useLocalPosition = !ScoresaberUtil.isInReplay;
 					} else if(settings.type == Configuration.CameraType.Attached) {
 						parent = parentToUse = GameObject.Find(settings.Smoothfollow.targetParent)?.transform;
-						settings.Smoothfollow.useLocalPosition = false;
 					}
 				}
 
@@ -128,25 +124,8 @@ namespace Camera2.Middlewares {
 				if(parentToUse == null)
 					return false;
 
-				if(settings.Smoothfollow.useLocalPosition) {
-					targetPosition = parentToUse.localPosition;
-					targetRotation = parentToUse.localRotation;
-
-					if(settings.type == Configuration.CameraType.FirstPerson && (HookRoomAdjust.position != Vector3.zero || HookRoomAdjust.rotation != Quaternion.identity)) {
-						if(!HookFPFCToggle.isInFPFC) {
-							targetPosition = (HookRoomAdjust.rotation * targetPosition) + HookRoomAdjust.position;
-							targetRotation = HookRoomAdjust.rotation * targetRotation;
-						} else {
-							//var parentsParent = parentToUse.parent;
-							//var parentsParentLocalRotation = parentsParent.rotation;
-							//targetPosition += parentsParent.localPosition;
-							//targetRotation *= Quaternion.Inverse(parentsParentLocalRotation);
-						}
-					}
-				} else {
-					targetPosition = parentToUse.position;
-					targetRotation = parentToUse.rotation;
-				}
+				targetPosition = parentToUse.position;
+				targetRotation = parentToUse.rotation;
 			} else {
 				targetPosition = currentReplaySource.localHeadPosition;
 				targetRotation = currentReplaySource.localHeadRotation;
