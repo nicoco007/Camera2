@@ -14,6 +14,7 @@ namespace Camera2.Managers {
 #endif
 	static class ScenesManager {
 		internal static ScenesSettings settings { get; private set; } = new ScenesSettings();
+		internal static IVRPlatformHelper platformHelper { get; private set; }
 
 		// Kind of a hack not having it start off Menu but else the first menu load will not apply..
 		internal static SceneTypes? loadedScene { get; private set; } = null;
@@ -23,6 +24,10 @@ namespace Camera2.Managers {
 		public static readonly HashSet<string> disabledSceneNames = new HashSet<string>() { "PCInit", "BeatmapEditor3D", "BeatmapLevelEditorWorldUi" };
 
 		public static void ActiveSceneChanged(string sceneName = null) {
+			if (platformHelper == null) {
+				platformHelper = Object.FindObjectOfType<UnityXRHelper>();
+			}
+
 			if(SceneUtil.currentScene == null)
 				return;
 

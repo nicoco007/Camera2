@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using Camera2.Managers;
 
 namespace Camera2.Utils {
 	static class TransformerOrders {
@@ -96,6 +97,10 @@ namespace Camera2.Utils {
 #endif
 
 		public void Calculate(bool apply = true) {
+			if (ScenesManager.platformHelper != null && !(ScenesManager.platformHelper.hasInputFocus && ScenesManager.platformHelper.hasVrFocus)) {
+				apply = false;
+			}
+
 			if(transformers.Count == 0) {
 				position = Vector3.zero;
 				rotation = Quaternion.identity;
